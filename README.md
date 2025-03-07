@@ -6,7 +6,7 @@
 * [Cat333t](https://github.com/Cat333t)
 * [volohatybober](https://github.com/volohatybober)
 * [y9quicky69](https://github.com/y9quicky69)
-* Пропал
+* [astargz94](https://github.com/astargz94)
 
 ### Технологии:
 * HTML
