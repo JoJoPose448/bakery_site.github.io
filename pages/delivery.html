@@ -5,35 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bakery - Доставка</title>
     <link rel="stylesheet" href="../styles/delivery.css">
+    <link rel="icon" href="../images/logo.png">
 </head>
 <body>
     <div class="delivery">
         <h1 class="title-delivery">Оформлення замовлення</h1>
 
-        <label>Ім'я:</label>
-        <input type="text">
+        <div class="delivery-form">
+            <label>Ім'я:</label>
+            <input type="text">
 
-        <label>Телефон:</label>
-        <input type="text" placeholder="+380 (__) ___-__-__" value="+380" maxlength="13">
+            <label>Телефон:</label>
+            <input type="text" id="phone" value="+380" maxlength="13">
 
-        <label>Адреса:</label>
-        <input type="text" placeholder="Область, місто, вулиця, будинок">
+            <label>Адреса:</label>
+            <input type="text" placeholder="Область, місто, вулиця, будинок">
 
-        <button>Замовити</button>
+            <button>Замовити</button>
+        </div>
     </div>
+
+    <div class="show-order">Замовлення 
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+    </div>
+
     <div class="order-container">
-        <h2 class="title-order">Ваш заказ:</h2>
+        <h2 class="title-order">Ваши закази:</h2>
 
         <div class="order-card-container">
-            <div class="order-card"><img src="../images/products/1.png">Вкусняшка</div>
         </div>
 
-        <button class="order-btn">Замовити</button>
+        <button class="order-btn">Добавити</button>
 
         <div class="order-info">
             <h3 class="price-text">Разом: </h3> 
-            <h3 class="price">100грн</h3>
+            <h3 class="price">0грн</h3>
+        </div>
+
+        <div class="back-btn">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+        </div>
+    </div>
+
+    <div class="products-container" >
+        <h1 class="title-products">Наші продукти:</h1>
+        
+        <div class="products-card-container">
+
+        </div>
+
+        <div class="back-btn">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
         </div>
     </div>
 </body>
+
+<script src="../scripts/delivery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
 </html>

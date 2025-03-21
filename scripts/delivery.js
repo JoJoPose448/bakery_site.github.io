@@ -1,0 +1,193 @@
+let phone_input = document.querySelector('#phone');
+let orderContainer = document.querySelector('.order-container')
+let deliveryContainer = document.querySelector('.delivery')
+let productsContainer = document.querySelector('.products-container')
+let orderCardContainer = document.querySelector('.order-card-container')
+let productsCardContainer = document.querySelector('.products-card-container')
+
+let cost = 0
+
+const listProducts = {
+    Croissants: {
+        "image": "../images/Croissants.png",
+        "price": 100,
+        name: "Круасан"
+    },
+    Bread: {
+        "image": "../images/bread.png",
+        "price": 50,
+        name: "Булочка"
+    },
+    Baguette: {
+        "image": "",
+        "price": 150,
+        name: "Багет"
+    },
+    Baguette2: {
+        "image": "",
+        "price": 150,
+        name: "Багет"
+    },
+    Baguette3: {
+        "image": "",
+        "price": 150,
+        name: "Багет"
+    },
+    Baguette4: {
+        "image": "",
+        "price": 150,
+        name: "Багет"
+    },
+    Baguette5: {
+        "image": "",
+        "price": 150,
+        name: "Багет"
+    },
+    Baguette6: {
+        "image": "",
+        "price": 150,
+        name: "Багет"
+    },
+}
+
+function createProductCard(product, name, quantity) {
+    orderCardContainer.innerHTML += `<div class="order-card" id="${name}" quantity="${quantity}"><img src="${product.image}" alt="Image">${product.name}<p>${quantity}шт</p> <p>${product.price}грн</p></div>`
+    anime({
+        targets: `#${name}`,
+        translateX: [window.innerWidth * 50/100, 0],
+        duration: 400,
+        ease: 'linear'
+    })
+}
+
+
+
+phone_input.addEventListener('input', () => {
+    if (!phone_input.value.startsWith("+380")) {
+        phone_input.value = "+380";
+    }
+
+    phone_input.value = "+380" + phone_input.value.replace(/\D/g, "").slice(3);
+});
+
+document.querySelector('.order-btn').addEventListener('click', () => {
+    deliveryContainer.style.filter = 'blur(2px)';
+    orderContainer.style.filter = 'blur(2px)';
+    deliveryContainer.style.pointerEvents = 'none';
+    orderContainer.style.pointerEvents = 'none';
+
+    productsContainer.style.opacity = '1';
+    productsContainer.style.pointerEvents = 'all';
+})
+
+productsContainer.querySelector('.back-btn').addEventListener('click', () => {
+    deliveryContainer.style.filter = 'none';
+    orderContainer.style.filter = 'none';
+    deliveryContainer.style.pointerEvents = 'all';
+    orderContainer.style.pointerEvents = 'all';
+
+    productsContainer.style.opacity = '0';
+    productsContainer.style.pointerEvents = 'none';
+})
+
+document.addEventListener('keydown', (e) => {
+    if (e.key == 'Escape') {
+        deliveryContainer.style.filter = 'none';
+        orderContainer.style.filter = 'none';
+        deliveryContainer.style.pointerEvents = 'all';
+        orderContainer.style.pointerEvents = 'all';
+
+        productsContainer.style.opacity = '0';
+        productsContainer.style.pointerEvents = 'none';
+    }
+})
+
+
+for (let product in listProducts) {
+    productsCardContainer.innerHTML += `<div class="products-card" name="${product}"><img src="${listProducts[product].image}" alt="Image">${listProducts[product].name} <input type="number" min="1" placeholder="Кількість"> <p>${listProducts[product].price}грн</p><div class="add-btn"><div class="line line1"></div><div class="line line2"></div></div></div>`
+}
+
+document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        if(!btn.parentElement.classList.contains('selected')) {
+            if(btn.parentElement.querySelector('input').value == '') {
+                alert('Введіть кількість')
+                document.querySelector(`#${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
+                return                
+            } else if (btn.parentElement.querySelector('input').value < 1) {
+                alert('Кількість не може бути меншою ніж 1')
+                document.querySelector(`#${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
+                return
+            } else if (Math.floor(btn.parentElement.querySelector('input').value) != btn.parentElement.querySelector('input').value) {
+                alert('Кількість повинна бути цілим числом')
+                document.querySelector(`#${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
+                return
+            }
+
+            btn.parentElement.classList.add('selected')
+            cost += listProducts[btn.parentElement.getAttribute('name')].price * btn.parentElement.querySelector('input').value
+            createProductCard(listProducts[btn.parentElement.getAttribute('name')], btn.parentElement.getAttribute('name'), btn.parentElement.querySelector('input').value)
+        } else {
+            btn.parentElement.classList.remove('selected')
+            cost -= listProducts[btn.parentElement.getAttribute('name')].price * document.querySelector(`#${btn.parentElement.getAttribute('name')}`).getAttribute('quantity')
+            document.querySelector(`#${btn.parentElement.getAttribute('name')}`).remove()
+        }
+        document.querySelector('.price').innerText = cost + 'грн'
+    })
+
+})
+
+document.querySelector('.delivery-form').querySelector('button').addEventListener('click', () => {
+    let flag = false
+    document.querySelectorAll('.delivery-form input').forEach(input => {
+        if (input.value.startsWith('+380')) {
+            if (input.value.length != 13) {
+                input.style.border = '2px solid red'
+                flag = true
+                return
+            }
+        }
+        if (input.value == '' || input.value == '+380') {
+            input.style.border = '2px solid red'
+            flag = true
+            return 
+        } 
+    })
+
+    if(document.querySelector('.order-container').innerHTML == '') {
+        alert('Ваше замовлення порожнє!')
+    }
+    
+
+    if (flag) {
+        alert('Заповніть всі поля!')
+    } else {
+        alert('Дякуємо за замовлення!')
+    }
+})
+
+document.querySelector('.delivery-form').querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', () => {
+        input.style.border = '1px solid #FFBE55'
+    })
+})
+
+document.querySelector('.show-order').addEventListener('click', () => {
+    if (document.querySelector('.order-container').style.display == 'none') {
+        document.querySelector('.order-container').style.display = 'flex'
+    } else {
+        document.querySelector('.order-container').style.display = 'none'
+    }
+})
+
+productsContainer.querySelectorAll('.products-card').forEach(card => {
+    card.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+            input.style.border = '1px solid #000'
+        })
+    })
+})
+
+orderContainer.querySelector('.back-btn').addEventListener('click', () => {
+    orderContainer.style.display = 'none'
+})
