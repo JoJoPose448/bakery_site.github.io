@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&display=swap');
 
 *{
     padding:0;
@@ -32,7 +32,6 @@ body{
     transition: filter 1s ease;
 }
 
-
 .delivery .delivery-form{
     display: flex;
     flex-direction: column;
@@ -42,16 +41,14 @@ body{
     padding-bottom: 30px;
     position: relative;
     width: 50%;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
 
     box-shadow: #000000 0px 0px 7px 1px;
-
-    transition: box-shadow 0.5s ease, transform 0.5s ease;
+    transition: box-shadow 1s ease;
 }
 
 .delivery .delivery-form:hover{
-    box-shadow: #000000 0px 0px 10px;
-    transform: scale(1.01);
+    box-shadow: #FFBE55 0px 0px 7px 3px;
 }
 
 .title-delivery{
@@ -61,12 +58,13 @@ body{
     font-size: 50px;
     text-shadow: #ffa600 0px 1px 5px;
     color: #ffff;
+    font-family: 'Tektur', sans-serif;
 }
 
 .delivery .delivery-form label{
     margin-left: 10px;
     margin: 10px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     position: relative;
     left: 20%;
@@ -79,14 +77,19 @@ body{
     width: 60%;
     height: 35px;
 
+    background: hsla(42, 100%, 50%, 0.444);
+    border: 2px solid #FFBE55;
+    color: #fff;
+    font-size: 15px;
+
     border-radius: 5px;
-    border: 2px solid lightgray;
     padding: 5px;
     position: relative;
 }
 
 .delivery .delivery-form input::placeholder{
     font-size: 14px;
+    color: #fff;
 }
 
 .delivery .delivery-form input:hover{
@@ -157,6 +160,10 @@ body{
     font-size: 30px;
 
     background-color: #e38c00;
+
+    font-family: 'Trektur', sans-serif;
+    color: whitesmoke;
+    text-shadow: #f6ff0080 0px 1px 5px;
 }
 
 .order-card-container{
