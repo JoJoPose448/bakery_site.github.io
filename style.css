@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f1e1;
+    color: #5a3e1b;
+    text-align: center;
+}
+
+header {
+    margin: 20px auto;
+}
+
+.main-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #f4a733;
+    padding: 12px 20px;
+    border-radius: 10px;
+    justify-content: center;
+    max-width: fit-content;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.main-menu a:hover {
+    color: white;
+}
+
+.logo img {
+    width: 2000px;
+    height: 2000px;
+}
+
+/* Иконки */
+.main-menu img {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.hero {
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.hero .btn {
+    background-color: #f4a733;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn:hover {
+    background-color: #d98a2b;
+}
+
+footer {
+    background-color: #f4a733;
+    padding: 10px;
+    margin-top: 40px;
+    color: black;
+}
