@@ -15,9 +15,9 @@ body{
     width: 100%;
     overflow: hidden;
     
-    background-image: url('../images/bread.png');
+    background-image: url('../images/bk.png');
     background-size: cover;
-    
+    background-repeat: no-repeat;
 }
 
 .delivery{
@@ -42,6 +42,7 @@ body{
     padding-bottom: 30px;
     position: relative;
     width: 50%;
+    backdrop-filter: blur(20px);
 
     box-shadow: #000000 0px 0px 7px 1px;
 
@@ -57,6 +58,9 @@ body{
     position: absolute;
     top: 1%;
     text-align: center;
+    font-size: 50px;
+    text-shadow: #ffa600 0px 1px 5px;
+    color: #ffff;
 }
 
 .delivery .delivery-form label{
