@@ -19,34 +19,29 @@ const listProducts = {
         name: "Булочка"
     },
     Baguette: {
-        "image": "",
-        "price": 150,
+        "image": "../images/baguette.png",
+        "price": 80,
         name: "Багет"
     },
-    Baguette2: {
-        "image": "",
-        "price": 150,
-        name: "Багет"
+    pancakes: {
+        "image": "../images/pancakes.png",
+        "price": 175,
+        name: "Млинці"
     },
-    Baguette3: {
-        "image": "",
-        "price": 150,
-        name: "Багет"
+    sirniki: {
+        "image": "../images/sirniki.png",
+        "price": 175,
+        name: "Сирники"
     },
-    Baguette4: {
-        "image": "",
-        "price": 150,
-        name: "Багет"
+    suhariki: {
+        "image": "../images/suhariki.png",
+        "price": 100,
+        name: "Сухарики"
     },
-    Baguette5: {
-        "image": "",
-        "price": 150,
-        name: "Багет"
-    },
-    Baguette6: {
-        "image": "",
-        "price": 150,
-        name: "Багет"
+    pirizhok: {
+        "image": "../images/pirizhochok.png",
+        "price": 40,
+        name: "Пиріжок"
     },
 }
 
