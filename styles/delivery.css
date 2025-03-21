@@ -14,7 +14,10 @@ body{
     justify-content: space-between;
     width: 100%;
     overflow: hidden;
-
+    
+    background-image: url('../images/bread.png');
+    background-size: cover;
+    
 }
 
 .delivery{
@@ -28,6 +31,7 @@ body{
 
     transition: filter 1s ease;
 }
+
 
 .delivery .delivery-form{
     display: flex;
