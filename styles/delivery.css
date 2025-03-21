@@ -137,6 +137,7 @@ body{
     overflow-y: scroll;
     overflow-x: hidden;
     transition: filter 1s ease;
+    box-shadow: #000000 0px 0px 7px 1px;
 
     &::-webkit-scrollbar{
         background-color: transparent;
@@ -208,11 +209,12 @@ body{
     font-size: 22px;
     align-self: center;
     font-weight: 600;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .order-btn:hover{
     background-color: #fab240;
-    border: #000 2px solid;
+    transform: scale(1.1);
 }
 
 .order-info{
