@@ -5,6 +5,15 @@
     margin:0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+
+    &::selection{
+        background-color: #ffa412;
+        color: #cc4c2b;
+    }
+}
+
+input::placeholder, img{
+    user-select: none;
 }
 
 body{
@@ -41,14 +50,15 @@ body{
     padding-bottom: 30px;
     position: relative;
     width: 50%;
-    backdrop-filter: blur(10px);
+    background: #ffbe55f4;
 
     box-shadow: #000000 0px 0px 7px 1px;
-    transition: box-shadow 1s ease;
+    transition: box-shadow 1s ease, transform 1s ease;
 }
 
 .delivery .delivery-form:hover{
     box-shadow: #FFBE55 0px 0px 7px 3px;
+    transform: scale(1.03);
 }
 
 .title-delivery{
@@ -119,6 +129,8 @@ body{
     padding-left: 10px;
     padding-right: 10px;
     transition: transform 0.5s ease, background-color 0.5s ease;
+
+    user-select: none;
 }
 
 .delivery .delivery-form button:hover{
@@ -217,6 +229,8 @@ body{
     align-self: center;
     font-weight: 600;
     transition: transform 0.5s ease, background-color 0.5s ease;
+
+    user-select: none;
 }
 
 .order-btn:hover{

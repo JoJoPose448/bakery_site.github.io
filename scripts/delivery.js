@@ -157,7 +157,7 @@ document.querySelector('.delivery-form').querySelector('button').addEventListene
     if (flag) {
         alert('Заповніть всі поля!')
     } else {
-        alert('Дякуємо за замовлення!')
+        window.location.href = 'thanks.html'
     }
 })
 

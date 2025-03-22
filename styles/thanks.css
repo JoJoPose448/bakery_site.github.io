@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+    &::selection{
+        background-color: #FFBE55;
+        color: #cf5436;
+    }
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url('../images/bk2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    color: #fff;
+
+    h1{
+        text-align: center;
+        margin: 10px;
+        font-size: 50px;
+    }
+
+    p{
+        text-align: center;
+        margin: 10px;
+        font-size: 30px;
+    }
+
+    a{
+        user-select: none;
+        text-shadow: #ff7b00 1px 1px 1px;
+        text-align: center;
+        margin: 10px;
+        font-size: 30px;
+        color: #fff;
+        text-decoration: none;
+        background: #ffbe55c0;
+        border: #ff7b00 2px solid;
+        border-radius: 20px;
+        padding: 5px;
+        transition: transform 0.5s ease, background-color 0.5s ease, border 0.5s ease;
+
+        &:hover{
+            background-color: #FFBE55;
+            transform: scale(1.1);
+            border: 2px solid #fff;
+        }
+    }
+}
