@@ -7,7 +7,7 @@ let productsCardContainer = document.querySelector('.products-card-container')
 
 let cost = 0
 
-const listProducts = {
+export const listProducts = {
     Croissants: {
         "image": "../images/Croissants.png",
         "price": 100,
