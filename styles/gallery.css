@@ -106,6 +106,48 @@ h1 {
     outline: none;
 }
 
+footer {
+    background-image: url(https://obakery.kyiv.ua/wp-content/themes/obakery/public/images/bg-footer.5de306a981025fcc.jpg);
+    color: white;
+    padding: 70px 10px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    background-color: #222;
+    padding: 20px;
+    color: white;
+}
+
+.footer-column {
+    text-align: left;
+    margin-right: 20px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    color: #f0c674; /* Цвет ссылок */
+    font-size: 14px;
+    margin: 5px 0;
+    display: block; /* Сделает ссылки вертикальными */
+    text-decoration: none; /* Убирает подчеркивание */
+}
+
+.footer-column a:hover {
+    color: #ffcc00; /* Цвет при наведении */
+}
+
+.copyright {
+    width: 100%;
+    margin-top: 20px;
+}
 
 
 .product img {
