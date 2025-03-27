@@ -6,9 +6,11 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f1e1;
     color: #5a3e1b;
     text-align: center;
+
+    background-image: url(images/bk.png);
+    background-size: cover;
 }
 
 header {
