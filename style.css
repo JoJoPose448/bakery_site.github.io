@@ -6,7 +6,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    color: #5a3e1b;
+    color: #FFFF;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
     text-align: center;
 
     background-image: url(images/bk.png);
@@ -88,6 +89,6 @@ header {
 footer {
     background-color: #f4a733;
     padding: 10px;
-    margin-top: 40px;
+    margin-top: 350px;
     color: black;
 }

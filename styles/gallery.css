@@ -83,21 +83,22 @@ h1 {
     cursor: pointer;
     margin-top: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
     display: block;
-    top: 90%;
-    align-self: center;
-    font-family: 'Montserrat';
-    font-style: normal;
+    width: fit-content;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 30px;
     line-height: 36px;
     border: 0.2px solid #000000;
     border-radius: 30px;
-    color: #555;
+    color: white;
+    text-decoration: none;
     transition: all 0.3s;
     outline: none;
+    margin: 20px auto;
 }
+
 
 .catalog-button:hover {
     transform: scale(1.05);

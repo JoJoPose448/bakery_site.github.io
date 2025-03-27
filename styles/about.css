@@ -189,25 +189,38 @@ footer {
 
 .footer-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    max-width: 1000px;
-    margin: auto;
+    justify-content: space-between;
+    align-items: start;
+    background-color: #222;
+    padding: 20px;
+    color: white;
 }
 
 .footer-column {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px;
+    text-align: left;
+    margin-right: 20px;
 }
 
 .footer-column h3 {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
-    font-weight: bold;
 }
 
-.footer-column p {
+.footer-column a {
+    color: #f0c674; /* Цвет ссылок */
     font-size: 14px;
     margin: 5px 0;
+    display: block; /* Сделает ссылки вертикальными */
+    text-decoration: none; /* Убирает подчеркивание */
 }
+
+.footer-column a:hover {
+    color: #ffcc00; /* Цвет при наведении */
+}
+
+.copyright {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
