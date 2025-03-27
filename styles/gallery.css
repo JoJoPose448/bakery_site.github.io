@@ -8,6 +8,56 @@ body {
     min-height: 100vh;
     background-color: #f8f8f8; */
 }
+header {
+    margin: 20px auto;
+}
+
+.main-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #f4a733;
+    padding: 12px 20px;
+    border-radius: 10px;
+    justify-content: center;
+    max-width: fit-content;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.main-menu a:hover {
+    color: white;
+}
+
+.logo img {
+    width: 2000px;
+    height: 2000px;
+}
+
+/* Иконки */
+.main-menu img {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+    border-radius: 50%;
+}
 h1 {
     width: 100%;
     height: 10%; 
@@ -55,6 +105,8 @@ h1 {
     transition: all 0.3s;
     outline: none;
 }
+
+
 
 .product img {
     width: 100%;
