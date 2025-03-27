@@ -7,48 +7,48 @@ let productsCardContainer = document.querySelector('.products-card-container')
 
 let cost = 0
 
-const listProducts = {
-    Croissants: {
+export const listProducts = [
+    {
         "image": "../images/Croissants.png",
         "price": 100,
         name: "Круасан"
     },
-    Bread: {
+    {
         "image": "../images/bread.png",
         "price": 50,
         name: "Булочка"
     },
-    Baguette: {
+    {
         "image": "../images/baguette.png",
         "price": 80,
         name: "Багет"
     },
-    pancakes: {
+    {
         "image": "../images/pancakes.png",
         "price": 175,
         name: "Млинці"
     },
-    sirniki: {
+    {
         "image": "../images/sirniki.png",
         "price": 175,
         name: "Сирники"
     },
-    suhariki: {
+    {
         "image": "../images/suhariki.png",
         "price": 100,
         name: "Сухарики"
     },
-    pirizhok: {
+    {
         "image": "../images/pirizhochok.png",
         "price": 40,
         name: "Пиріжок"
     },
-}
+]
 
 function createProductCard(product, name, quantity) {
-    orderCardContainer.innerHTML += `<div class="order-card" id="${name}" quantity="${quantity}"><img src="${product.image}" alt="Image">${product.name}<p>${quantity}шт</p> <p>${product.price}грн</p></div>`
+    orderCardContainer.innerHTML += `<div class="order-card" id="product${name}" quantity="${quantity}"><img src="${product.image}" alt="Image">${product.name}<p>${quantity}шт</p> <p>${product.price}грн</p></div>`
     anime({
-        targets: `#${name}`,
+        targets: `#product${name}`,
         translateX: [window.innerWidth * 50/100, 0],
         duration: 400,
         ease: 'linear'
@@ -98,8 +98,8 @@ document.addEventListener('keydown', (e) => {
 })
 
 
-for (let product in listProducts) {
-    productsCardContainer.innerHTML += `<div class="products-card" name="${product}"><img src="${listProducts[product].image}" alt="Image">${listProducts[product].name} <input type="number" min="1" placeholder="Кількість"> <p>${listProducts[product].price}грн</p><div class="add-btn"><div class="line line1"></div><div class="line line2"></div></div></div>`
+for (let i = 0; i < listProducts.length; i++) {
+    productsCardContainer.innerHTML += `<div class="products-card" name="${i}"><img src="${listProducts[i].image}" alt="Image">${listProducts[i].name} <input type="number" min="1" placeholder="Кількість"> <p>${listProducts[i].price}грн</p><div class="add-btn"><div class="line line1"></div><div class="line line2"></div></div></div>`
 }
 
 document.querySelectorAll('.add-btn').forEach(btn => {
@@ -107,15 +107,15 @@ document.querySelectorAll('.add-btn').forEach(btn => {
         if(!btn.parentElement.classList.contains('selected')) {
             if(btn.parentElement.querySelector('input').value == '') {
                 alert('Введіть кількість')
-                document.querySelector(`#${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
+                document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
                 return                
             } else if (btn.parentElement.querySelector('input').value < 1) {
                 alert('Кількість не може бути меншою ніж 1')
-                document.querySelector(`#${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
+                document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
                 return
             } else if (Math.floor(btn.parentElement.querySelector('input').value) != btn.parentElement.querySelector('input').value) {
                 alert('Кількість повинна бути цілим числом')
-                document.querySelector(`#${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
+                document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).querySelector('input').style.border = '2px solid red'
                 return
             }
 
@@ -124,8 +124,8 @@ document.querySelectorAll('.add-btn').forEach(btn => {
             createProductCard(listProducts[btn.parentElement.getAttribute('name')], btn.parentElement.getAttribute('name'), btn.parentElement.querySelector('input').value)
         } else {
             btn.parentElement.classList.remove('selected')
-            cost -= listProducts[btn.parentElement.getAttribute('name')].price * document.querySelector(`#${btn.parentElement.getAttribute('name')}`).getAttribute('quantity')
-            document.querySelector(`#${btn.parentElement.getAttribute('name')}`).remove()
+            cost -= listProducts[btn.parentElement.getAttribute('name')].price * document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).getAttribute('quantity')
+            document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).remove()
         }
         document.querySelector('.price').innerText = cost + 'грн'
     })
