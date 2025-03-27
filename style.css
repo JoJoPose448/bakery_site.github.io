@@ -13,6 +13,11 @@ body {
     background-image: url(images/bk.png);
     background-size: cover;
 }
+
+.Facebook{
+    border-radius: 6px;
+}
+
 footer {
     background-image: url(https://obakery.kyiv.ua/wp-content/themes/obakery/public/images/bg-footer.5de306a981025fcc.jpg);
     color: white;
