@@ -45,6 +45,8 @@ export const listProducts = [
     },
 ]
 
+try {
+
 function createProductCard(product, name, quantity) {
     orderCardContainer.innerHTML += `<div class="order-card" id="product${name}" quantity="${quantity}"><img src="${product.image}" alt="Image">${product.name}<p>${quantity}шт</p> <p>${product.price}грн</p></div>`
     anime({
@@ -186,3 +188,8 @@ productsContainer.querySelectorAll('.products-card').forEach(card => {
 orderContainer.querySelector('.back-btn').addEventListener('click', () => {
     orderContainer.style.display = 'none'
 })
+
+} 
+catch (error) {
+    console.log()
+}
