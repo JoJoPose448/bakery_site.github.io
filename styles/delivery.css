@@ -332,6 +332,7 @@ body{
 }
 
 .products-container{
+    overflow-x: hidden;
     flex-direction: column;
     position: absolute;
     background: #e38c00;
@@ -412,9 +413,16 @@ body{
     justify-content: space-between;
     background-color: #FFBE55;
     border-radius: 100px;
-    margin: 5px;
+    margin: 10px;
     font-size: 21px;
     font-weight: bold;
+
+    transition: all 0.5s ease;
+
+    &:hover{
+        transform: scale(1.01);
+        box-shadow: #ffdd00 0px 0px 5px 2px;
+    }
 
     input{
         background-color: #FFBE55;
