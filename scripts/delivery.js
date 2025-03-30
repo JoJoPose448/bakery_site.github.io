@@ -5,6 +5,8 @@ let productsContainer = document.querySelector('.products-container')
 let orderCardContainer = document.querySelector('.order-card-container')
 let productsCardContainer = document.querySelector('.products-card-container')
 
+let cookies = document.cookie.split('; ');
+
 let cost = 0
 
 export const listProducts = [
@@ -124,10 +126,48 @@ document.querySelectorAll('.add-btn').forEach(btn => {
             btn.parentElement.classList.add('selected')
             cost += listProducts[btn.parentElement.getAttribute('name')].price * btn.parentElement.querySelector('input').value
             createProductCard(listProducts[btn.parentElement.getAttribute('name')], btn.parentElement.getAttribute('name'), btn.parentElement.querySelector('input').value)
+        
+            let cart = []
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim().split('=')
+                if (cookie[0] === 'cart') {
+                    cart = JSON.parse(decodeURIComponent(cookie[1]))
+                    console.log(cart)
+                }
+            }
+
+            cart.push({
+                name: listProducts[btn.parentElement.getAttribute('name')].name,
+                quantity: btn.parentElement.querySelector('input').value
+            })
+
+            document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; max-age=${60 * 60 * 24 * 30}`  
+            cookies = document.cookie.split('; ');
         } else {
             btn.parentElement.classList.remove('selected')
             cost -= listProducts[btn.parentElement.getAttribute('name')].price * document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).getAttribute('quantity')
             document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).remove()
+
+            let cart = []
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim().split('=')
+                if (cookie[0] === 'cart') {
+                    cart = JSON.parse(decodeURIComponent(cookie[1]))
+                    console.log(cart)
+                }
+            }
+
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i].name === listProducts[btn.parentElement.getAttribute('name')].name) {
+                    cart.splice(i, 1)
+                    break
+                }
+            }
+
+            document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; max-age=${60 * 60 * 24 * 30}`  
+            cookies = document.cookie.split('; ');
         }
         document.querySelector('.price').innerText = cost + 'грн'
     })
@@ -188,6 +228,31 @@ productsContainer.querySelectorAll('.products-card').forEach(card => {
 orderContainer.querySelector('.back-btn').addEventListener('click', () => {
     orderContainer.style.display = 'none'
 })
+
+let cart = []
+
+for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim().split('=');
+    if (cookie[0] === 'cart') {
+        cart = JSON.parse(decodeURIComponent(cookie[1]));
+    }
+}
+
+for(let i = 0; i < cart.length; i++) {
+    for(let j = 0; j < listProducts.length; j++) { 
+        if(listProducts[j].name == cart[i].name) {
+            createProductCard(listProducts[j], j, cart[i].quantity)
+
+            document.querySelector(`.products-card[name="${j}"]`).querySelector('input').value = cart[i].quantity
+            document.querySelector(`.products-card[name="${j}"]`).classList.add('selected')
+        }
+    }
+}
+
+document.querySelectorAll('.order-card').forEach(card => {
+    card.style.transform = 'translateY(0px)'
+})
+
 
 } 
 catch (error) {
