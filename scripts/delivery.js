@@ -245,6 +245,9 @@ for(let i = 0; i < cart.length; i++) {
 
             document.querySelector(`.products-card[name="${j}"]`).querySelector('input').value = cart[i].quantity
             document.querySelector(`.products-card[name="${j}"]`).classList.add('selected')
+
+            cost += listProducts[j].price * cart[i].quantity
+            document.querySelector('.price').innerText = cost + 'грн'
         }
     }
 }
@@ -253,8 +256,8 @@ document.querySelectorAll('.order-card').forEach(card => {
     card.style.transform = 'translateY(0px)'
 })
 
-
 } 
 catch (error) {
-    console.log()
+    console.warn('Если ты на странице gallery то всё ок! И ошибка ниже не та!')
+    console.error(error)
 }

@@ -159,12 +159,14 @@ for (let i = 0; i < cookies.length; i++) {
         cart = JSON.parse(decodeURIComponent(cookie[1]))
     }
 }  
+
 if(cart.length > 0) {
     document.querySelectorAll('.btn-buy').forEach(btn => {
         for(let i = 0; i < cart.length; i++) {
             if(btn.parentElement.querySelector('.product-name').textContent === cart[i].name) {
                 btn.style.display = 'none'
                 btn.parentElement.querySelector('.product-quantity').style.display = 'flex'
+                btn.parentElement.querySelector('span').innerHTML = cart[i].quantity
             }
         }
     })
