@@ -199,6 +199,18 @@ document.querySelector('.delivery-form').querySelector('button').addEventListene
     if (flag) {
         alert('Заповніть всі поля!')
     } else {
+        let name = document.querySelector('#name').value
+        let phone = document.querySelector('#phone').value
+        let address = document.querySelector('#address').value
+
+        let userData = {
+            name: name,
+            phone: phone,
+            address: address
+        }
+
+        document.cookie = `user-data=${encodeURIComponent(JSON.stringify(userData))}; max-age=${60 * 60 * 24 * 30}`
+
         window.location.href = 'thanks.html'
     }
 })
@@ -230,13 +242,23 @@ orderContainer.querySelector('.back-btn').addEventListener('click', () => {
 })
 
 let cart = []
+let userData = {}
 
 for (let i = 0; i < cookies.length; i++) {
     let cookie = cookies[i].trim().split('=');
     if (cookie[0] === 'cart') {
         cart = JSON.parse(decodeURIComponent(cookie[1]));
+    } else if (cookie[0] === 'user-data') {
+        userData = JSON.parse(decodeURIComponent(cookie[1]));
     }
 }
+
+if (userData != {}) {
+    document.querySelector('#name').value = userData.name
+    document.querySelector('#phone').value = userData.phone
+    document.querySelector('#address').value = userData.address
+}
+
 
 for(let i = 0; i < cart.length; i++) {
     for(let j = 0; j < listProducts.length; j++) { 
