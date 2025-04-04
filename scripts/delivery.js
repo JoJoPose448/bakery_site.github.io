@@ -45,6 +45,11 @@ export const listProducts = [
         "price": 40,
         name: "Пиріжок"
     },
+    {
+        "image": "../images/sausage.jpg",
+        "price": 35,
+        name: "Сосиска в тісті"
+    }
 ]
 
 try {
