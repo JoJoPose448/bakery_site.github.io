@@ -175,29 +175,32 @@ document.querySelectorAll('.add-btn').forEach(btn => {
 })
 
 document.querySelector('.delivery-form').querySelector('button').addEventListener('click', () => {
-    let flag = false
+    let error = ''
+
     document.querySelectorAll('.delivery-form input').forEach(input => {
+        if (document.querySelector(".order-card") == null) {
+            error = 'error products'
+        }
         if (input.value.startsWith('+380')) {
             if (input.value.length != 13) {
                 input.style.border = '2px solid red'
-                flag = true
-                return
+                error = 'error phone'
             }
         }
         if (input.value == '' || input.value == '+380') {
             input.style.border = '2px solid red'
-            flag = true
-            return 
+            error = 'error'
         } 
-    })
+    })    
 
-    if(document.querySelector('.order-container').innerHTML == '') {
-        alert('Ваше замовлення порожнє!')
-    }
-    
-
-    if (flag) {
-        alert('Заповніть всі поля!')
+    if (error) {
+        if(error == 'error phone') {
+            alert('Введіть коректний номер телефону!')
+        } else if (error == 'error products') {
+            alert('Додайте продукти до замовлення!')
+        } else {
+            alert('Введіть всі поля!')
+        }
     } else {
         let name = document.querySelector('#name').value
         let phone = document.querySelector('#phone').value
