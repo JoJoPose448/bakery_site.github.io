@@ -253,12 +253,11 @@ for (let i = 0; i < cookies.length; i++) {
     }
 }
 
-if (userData != {}) {
+if (userData.name && userData.phone && userData.address) {
     document.querySelector('#name').value = userData.name
     document.querySelector('#phone').value = userData.phone
     document.querySelector('#address').value = userData.address
 }
-
 
 for(let i = 0; i < cart.length; i++) {
     for(let j = 0; j < listProducts.length; j++) { 
