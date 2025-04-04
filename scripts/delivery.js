@@ -287,6 +287,5 @@ document.querySelectorAll('.order-card').forEach(card => {
 
 } 
 catch (error) {
-    console.warn('Если ты на странице gallery то всё ок! И ошибка ниже не та!')
-    console.error(error)
+    console.log(error)
 }
