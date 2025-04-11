@@ -104,6 +104,16 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
     outline: none;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: show 0.5s ease forwards;
+}
+
+@keyframes show {
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .product .btn-buy {

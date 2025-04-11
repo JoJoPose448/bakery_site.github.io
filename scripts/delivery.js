@@ -64,8 +64,6 @@ function createProductCard(product, name, quantity) {
     })
 }
 
-
-
 phone_input.addEventListener('input', () => {
     if (!phone_input.value.startsWith("+380")) {
         phone_input.value = "+380";

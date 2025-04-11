@@ -8,22 +8,29 @@ const gallery = document.querySelector(".gallery");
 gallery.innerHTML = listProducts
   .map(
     (product) => 
-        `<div class="product">
+      `<div class="product">
             <img src="${product.image}" alt="${product.name}">
             <p class="product-name">${product.name}</p>
             <p>${product.price} грн</p>
             <button class="btn-buy">Додати в кошик</button>
             <div class="product-quantity">
-              <p>Кількість: <span>1</span></p>
-              <div class="quantity-buttons">
+            <p>Кількість: <span>1</span></p>
+            <div class="quantity-buttons">
                   <button class="btn-add">+</button>
                   <button class="btn-remove">-</button>
               </div>
             </div>
         </div>`
     
-  )
+      )
   .join("");
+
+const products = document.querySelectorAll('.product');
+products.forEach((card, index) => {
+    const delay = index * 200; 
+    card.style.animationDelay = `${delay}ms`;
+    console.log(card)
+});
 
 document.querySelector('.close-btn').addEventListener('click', () => {
     document.querySelector('.cart').classList.remove('show');

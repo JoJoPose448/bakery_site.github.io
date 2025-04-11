@@ -17,6 +17,19 @@ header {
     left: 30%;
     position: absolute;
     margin: 20px auto;
+    transform: translateY(calc(-100% - 20px));
+
+    animation: forwards 1s ease show0 3s;
+}
+
+@keyframes show0 {
+    from{
+        transform: translateY(calc(-100% - 20px));
+    }
+
+    to{
+        transform: translateY(0);
+    }
 }
 
 .main-menu {
@@ -88,9 +101,6 @@ body{
     transition: filter 1s ease;
 }
 
-
-
-
 .delivery .delivery-form{
     display: flex;
     flex-direction: column;
@@ -104,7 +114,19 @@ body{
 
     box-shadow: #000000 0px 0px 7px 1px;
     transition: box-shadow 1s ease, transform 1s ease;
+    transform: translateX(-50dvw);
+
+    animation: forwards 1s ease show1 2s;
 }
+
+@keyframes show1 {
+    0%{
+        transform: translateX(-50dvw);
+    }
+    100%{
+        transform: translateX(0);
+    }
+} 
 
 .delivery .delivery-form:hover{
     box-shadow: #FFBE55 0px 0px 7px 3px;
@@ -203,6 +225,8 @@ body{
     overflow-x: hidden;
     transition: filter 1s ease;
     box-shadow: #000000 0px 0px 7px 1px;
+    animation: forwards 1s ease show2 1s;
+    transform: translateX(50dvw);
 
     &::-webkit-scrollbar{
         background-color: transparent;
@@ -215,6 +239,16 @@ body{
     .back-btn{
         display: none;
     }
+}
+
+@keyframes show2 {
+    0%{
+        transform: translateX(50dvw);
+    }
+    100%{
+        transform: translateX(0);
+    }
+    
 }
 
 .title-order{
