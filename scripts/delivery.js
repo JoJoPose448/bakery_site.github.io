@@ -43,6 +43,12 @@ export const listProducts = [
         "price": 40,
         name: "Пиріжок"
     },
+
+    {
+        "image": "../images/oladushki_na_moloke-388953.jpg",
+        "price": 160,
+        name: "Панкейки"
+    },
 ]
 
 try {
