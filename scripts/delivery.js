@@ -5,6 +5,8 @@ let productsContainer = document.querySelector('.products-container')
 let orderCardContainer = document.querySelector('.order-card-container')
 let productsCardContainer = document.querySelector('.products-card-container')
 
+let cookies = document.cookie.split('; ');
+
 let cost = 0
 
 export const listProducts = [
@@ -62,8 +64,6 @@ function createProductCard(product, name, quantity) {
         ease: 'linear'
     })
 }
-
-
 
 phone_input.addEventListener('input', () => {
     if (!phone_input.value.startsWith("+380")) {
@@ -130,10 +130,48 @@ document.querySelectorAll('.add-btn').forEach(btn => {
             btn.parentElement.classList.add('selected')
             cost += listProducts[btn.parentElement.getAttribute('name')].price * btn.parentElement.querySelector('input').value
             createProductCard(listProducts[btn.parentElement.getAttribute('name')], btn.parentElement.getAttribute('name'), btn.parentElement.querySelector('input').value)
+        
+            let cart = []
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim().split('=')
+                if (cookie[0] === 'cart') {
+                    cart = JSON.parse(decodeURIComponent(cookie[1]))
+                    console.log(cart)
+                }
+            }
+
+            cart.push({
+                name: listProducts[btn.parentElement.getAttribute('name')].name,
+                quantity: btn.parentElement.querySelector('input').value
+            })
+
+            document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; max-age=${60 * 60 * 24 * 30}`  
+            cookies = document.cookie.split('; ');
         } else {
             btn.parentElement.classList.remove('selected')
             cost -= listProducts[btn.parentElement.getAttribute('name')].price * document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).getAttribute('quantity')
             document.querySelector(`#product${btn.parentElement.getAttribute('name')}`).remove()
+
+            let cart = []
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim().split('=')
+                if (cookie[0] === 'cart') {
+                    cart = JSON.parse(decodeURIComponent(cookie[1]))
+                    console.log(cart)
+                }
+            }
+
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i].name === listProducts[btn.parentElement.getAttribute('name')].name) {
+                    cart.splice(i, 1)
+                    break
+                }
+            }
+
+            document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; max-age=${60 * 60 * 24 * 30}`  
+            cookies = document.cookie.split('; ');
         }
         document.querySelector('.price').innerText = cost + 'грн'
     })
@@ -141,30 +179,45 @@ document.querySelectorAll('.add-btn').forEach(btn => {
 })
 
 document.querySelector('.delivery-form').querySelector('button').addEventListener('click', () => {
-    let flag = false
+    let error = ''
+
     document.querySelectorAll('.delivery-form input').forEach(input => {
+        if (document.querySelector(".order-card") == null) {
+            error = 'error products'
+        }
         if (input.value.startsWith('+380')) {
             if (input.value.length != 13) {
                 input.style.border = '2px solid red'
-                flag = true
-                return
+                error = 'error phone'
             }
         }
         if (input.value == '' || input.value == '+380') {
             input.style.border = '2px solid red'
-            flag = true
-            return 
+            error = 'error'
         } 
-    })
+    })    
 
-    if(document.querySelector('.order-container').innerHTML == '') {
-        alert('Ваше замовлення порожнє!')
-    }
-    
-
-    if (flag) {
-        alert('Заповніть всі поля!')
+    if (error) {
+        if(error == 'error phone') {
+            alert('Введіть коректний номер телефону!')
+        } else if (error == 'error products') {
+            alert('Додайте продукти до замовлення!')
+        } else {
+            alert('Введіть всі поля!')
+        }
     } else {
+        let name = document.querySelector('#name').value
+        let phone = document.querySelector('#phone').value
+        let address = document.querySelector('#address').value
+
+        let userData = {
+            name: name,
+            phone: phone,
+            address: address
+        }
+
+        document.cookie = `user-data=${encodeURIComponent(JSON.stringify(userData))}; max-age=${60 * 60 * 24 * 30}`
+
         window.location.href = 'thanks.html'
     }
 })
@@ -195,7 +248,43 @@ orderContainer.querySelector('.back-btn').addEventListener('click', () => {
     orderContainer.style.display = 'none'
 })
 
+let cart = []
+let userData = {}
+
+for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim().split('=');
+    if (cookie[0] === 'cart') {
+        cart = JSON.parse(decodeURIComponent(cookie[1]));
+    } else if (cookie[0] === 'user-data') {
+        userData = JSON.parse(decodeURIComponent(cookie[1]));
+    }
+}
+
+if (userData.name && userData.phone && userData.address) {
+    document.querySelector('#name').value = userData.name
+    document.querySelector('#phone').value = userData.phone
+    document.querySelector('#address').value = userData.address
+}
+
+for(let i = 0; i < cart.length; i++) {
+    for(let j = 0; j < listProducts.length; j++) { 
+        if(listProducts[j].name == cart[i].name) {
+            createProductCard(listProducts[j], j, cart[i].quantity)
+
+            document.querySelector(`.products-card[name="${j}"]`).querySelector('input').value = cart[i].quantity
+            document.querySelector(`.products-card[name="${j}"]`).classList.add('selected')
+
+            cost += listProducts[j].price * cart[i].quantity
+            document.querySelector('.price').innerText = cost + 'грн'
+        }
+    }
+}
+
+document.querySelectorAll('.order-card').forEach(card => {
+    card.style.transform = 'translateY(0px)'
+})
+
 } 
 catch (error) {
-    console.log()
+    console.log(error)
 }

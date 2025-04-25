@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 body {
     font-family: 'Montserrat', sans-serif;
     background: radial-gradient(73.04% 119.89% at 42.43% 50%, #b48841 16.1%, #E38C00 49.1%, #D6890D 67%, #C6861E 89.6%);
@@ -46,7 +46,7 @@ header {
 }
 
 /* Иконки */
-.main-menu img {
+.main-menu img:not(.cart-icon) {
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -104,6 +104,82 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
     outline: none;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: show 0.5s ease forwards;
+}
+
+@keyframes show {
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product .btn-buy {
+    border: none;
+    outline: none;
+    font-size: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid black;
+    background: #f4a733;
+    transition: all 0.5s;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    
+    &:hover {
+        background: #f5ad27;
+        border: 2px solid green;
+    }
+}
+
+.product-quantity {
+    display: none;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quantity-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        border: none;
+        outline: none;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: 2px solid black;
+        background: #f4a733;
+        transition: all 0.5s;
+        font-weight: 700;
+        font-family: 'Roboto', sans-serif;
+        text-transform: uppercase;
+        color: #fff;
+        
+        &:hover {
+            background: #f5ad27;
+            border: 2px solid green;
+            transform: scale(1.1);
+        }
+
+        &.btn-add {
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        &.btn-remove {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    }
 }
 
 footer {
@@ -198,4 +274,112 @@ footer {
     transform: scale(1.05);
     opacity: 90%;
     border: 0.2px solid #00e88f;
+}
+
+.cart-btn{
+    cursor: pointer;
+}
+
+.cart{
+    transform: translateX(-200%);
+    position: relative;
+    position: absolute;
+    position: fixed;
+    top: 10%;
+    left: 20%;
+    width: 60%;
+    height: 80%;
+    background: #f5ad27;
+    border-radius: 20px;
+    border-bottom-right-radius: 5px;
+    transition: all 0.5s ease;
+
+    &.show{
+        transform: translateX(0);
+    }
+
+    h1{
+        text-transform: uppercase;
+        font-weight: 900;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 60px;
+        text-align: center;
+    }
+
+    .close-btn{
+        padding: 30px;
+        margin-top: -15px;
+        margin-right: -15px;
+        position: absolute;
+        top: 25px;
+        right: 15px;
+        cursor: pointer;
+    }
+
+    .line{
+        cursor: pointer;
+        position: absolute;
+        top: 25px;
+        right: 15px;
+        width: 40px;
+        height: 5px;
+        border-radius: 20px;
+        background: #fff;
+    }
+
+    .line1{
+        transform: rotate(45deg);
+    }
+
+    .line2{
+        transform: rotate(-45deg);
+    }
+
+    .cart-container{
+
+        height: 76%;
+        overflow-y: auto;
+
+        padding: 20px;
+
+        .cart-product{
+            border-radius: 100px;
+
+            background: #D6890D;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-right: 20px;
+
+            p{
+                margin: 0;
+                padding: 0;
+                font-size: 25px;
+                font-family: 'Roboto', sans-serif;
+            }
+            
+
+            img{
+                border-top-left-radius: 100px;
+                border-bottom-left-radius: 100px;
+                width: 90px;
+                height: 90px;
+            }
+
+        }
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            background-color: #f5ad27;
+            border-radius: 100px;
+          }
+          
+          &::-webkit-scrollbar-thumb {
+            background-color: #fff;
+            border-radius: 100px;
+          }
+    }
 }
