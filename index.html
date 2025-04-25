@@ -42,7 +42,12 @@
             <h1>Справжній смак українського хліба</h1>
             <p>Ми випікаємо хліб з любов’ю та традиціями. Натуральні інгредієнти, домашній смак!</p>
         <div class="btn_container">   
-            <a href="./pages/gallery.html" class="btn main-btn">Дізнатися більше</a>
+            <button onclick="gtag('event', 'add_to_cart', {
+                'event_category': 'ecommerce',
+                'event_label': 'show details',
+              })">
+                <a href="./pages/gallery.html" class="btn main-btn" >Дізнатися більше</a>
+            </button>
         </div>    
 
         </section>
